@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TaskService {
-  private tasks: string[] = [];
+  private tasks: string[] = ['asfasf', 'banana'];
 
   getTasks(): string[] {
     return this.tasks;

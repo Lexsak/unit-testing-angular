@@ -7,28 +7,35 @@ import { TaskService } from '../task.service';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent {
-  tasks: string[] = [];
+  tasks: { text: string; completed: boolean }[] = [];
   newTask: string = '';
 
   constructor(private taskService: TaskService) {
-    this.tasks = this.taskService.getTasks();
+    this.tasks = this.taskService
+      .getTasks()
+      .map((task) => ({ text: task, completed: false }));
   }
 
   addTask(): void {
     if (this.newTask.trim() !== '') {
       this.taskService.addTask(this.newTask.trim());
       this.newTask = '';
-      this.tasks = this.taskService.getTasks();
+      this.refreshTasks();
     }
   }
 
   removeTask(index: number): void {
     this.taskService.removeTask(index);
-    this.tasks = this.taskService.getTasks();
+    this.refreshTasks();
   }
 
   markAsCompleted(index: number): void {
-    this.taskService.markTaskAsCompleted(index);
-    this.tasks = this.taskService.getTasks();
+    this.tasks[index].completed = !this.tasks[index].completed;
+  }
+
+  private refreshTasks(): void {
+    this.tasks = this.taskService
+      .getTasks()
+      .map((task) => ({ text: task, completed: false }));
   }
 }
