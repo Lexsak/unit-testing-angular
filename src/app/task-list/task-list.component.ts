@@ -11,9 +11,7 @@ export class TaskListComponent {
   newTask: string = '';
 
   constructor(private taskService: TaskService) {
-    this.tasks = this.taskService
-      .getTasks()
-      .map((task) => ({ text: task, completed: false }));
+    this.refreshTasks();
   }
 
   addTask(): void {
@@ -36,6 +34,6 @@ export class TaskListComponent {
   private refreshTasks(): void {
     this.tasks = this.taskService
       .getTasks()
-      .map((task) => ({ text: task, completed: false }));
+      .map((task) => ({ text: task.text, completed: task.completed }));
   }
 }

@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
 
+interface Task {
+  text: string;
+  completed: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private tasks: string[] = ['asfasf', 'banana'];
+  private tasks: Task[] = [];
 
-  getTasks(): string[] {
+  getTasks(): Task[] {
     return this.tasks;
   }
 
-  addTask(task: string): void {
-    this.tasks.push(task);
+  addTask(taskText: string): void {
+    const newTask: Task = { text: taskText, completed: false };
+    this.tasks.push(newTask);
   }
 
   removeTask(index: number): void {
@@ -22,8 +28,7 @@ export class TaskService {
 
   markTaskAsCompleted(index: number): void {
     if (index >= 0 && index < this.tasks.length) {
-      // You can implement additional logic here if needed
-      console.log(`Task "${this.tasks[index]}" marked as completed.`);
+      this.tasks[index].completed = !this.tasks[index].completed;
     }
   }
 }
