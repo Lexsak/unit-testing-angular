@@ -13,4 +13,5 @@ export class ChildComponent {
   onEmit(){
     this.freezedNumber
   }
+
 }
