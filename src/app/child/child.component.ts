@@ -8,5 +8,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ChildComponent {
   @Input() myInput: any;
 
-  
+  @Output() freezedNumber = new EventEmitter<number>()
+
+  onEmit(){
+    this.freezedNumber
+  }
 }
