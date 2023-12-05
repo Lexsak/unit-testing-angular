@@ -12,13 +12,10 @@ import { ChildComponent } from './child/child.component';
     AppComponent,
     TaskListComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
